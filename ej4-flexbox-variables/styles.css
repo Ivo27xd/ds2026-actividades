@@ -1,16 +1,16 @@
 * {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 
 :root {
-    --color-principal: #2c3e50;
-    --color-fondo: #f4f4f4;
-    --color-caja: #ffffff;
-    --color-secundario: #E8E8E8;
-    --color-link: #2980b9;
-    --sombra: 0 4px 8px rgba(0,0,0,0.2);
-    --radio: 10px;
+	--color-principal: #2c3e50;
+	--color-fondo: #f4f4f4;
+	--color-caja: #ffffff;
+	--color-secundario: #E8E8E8;
+	--color-link: #2980b9;
+	--sombra: 0 4px 8px rgba(0,0,0,0.2);
+	--radio: 10px;
 }
 
 
@@ -37,66 +37,66 @@
 
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: var(--color-fondo);
-    margin: 0;
+	font-family: Arial, sans-serif;
+	background-color: var(--color-fondo);
+	margin: 0;
 }
 
 
 .flex-container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
+	display: flex;
+	justify-content: center;
+	width: 100%;
 }
 
 
 .contenedor {
-    background-color: var(--color-caja);
-    width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    border-radius: var(--radio);
-    box-shadow: var(--sombra);
-    text-align: center;
+	background-color: var(--color-caja);
+	width: 400px;
+	margin: 50px auto;
+	padding: 20px;
+	border-radius: var(--radio);
+	box-shadow: var(--sombra);
+	text-align: center;
 }
 
 .espaciado {
-    margin: 20px;
-    max-width: 900px;
-    width: 100%;
-    background-color: var(--color-caja);
-    border-radius: var(--radio);
-    box-shadow: var(--sombra);
+	margin: 20px;
+	max-width: 900px;
+	width: 100%;
+	background-color: var(--color-caja);
+	border-radius: var(--radio);
+	box-shadow: var(--sombra);
 }
 
 
 .titulo {
-    color: var(--color-principal);
+	color: var(--color-principal);
 }
 
 .subtitulo {
-    color: #7f8c8d;
+	color: #7f8c8d;
 }
 
 
 .lista {
-    background-color: var(--color-secundario);
-    padding: 15px;
+	background-color: var(--color-secundario);
+	padding: 15px;
 }
 
 
 .imagen {
-    width: 200px;
-    border-radius: var(--radio);
+	width: 200px;
+	border-radius: var(--radio);
 }
 
 
 a {
-    text-decoration: none;
-    color: var(--color-link);
+	text-decoration: none;
+	color: var(--color-link);
 }
 
 a:hover {
-    text-decoration: underline;
+	text-decoration: underline;
 }
 
