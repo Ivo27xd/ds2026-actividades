@@ -1,0 +1,52 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #cccccc;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+h1 {
+    margin-bottom: 30px;
+    color: #282828;
+}
+
+input {
+    padding: 10px;
+    font-size: 15px;
+    width: 200px;
+    margin-bottom: 8px;
+    border: #ccc;
+    border-radius: 8px;
+}
+
+#btn {
+    padding: 10px 15px;
+    font-size: 15px;
+    background-color: #4aab4d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* el botón se oscurece y el cursor cambia a puntero cuando se coloca encima */
+#btn:hover {
+    cursor: pointer;
+    background-color: #3e9042;
+}
+
+#error {
+    color: red;
+}
+
+#resultado {
+    background-color: #8fed94;
+    color: #006205;
+    padding: 15px;
+    border-radius: 8px;
+}
