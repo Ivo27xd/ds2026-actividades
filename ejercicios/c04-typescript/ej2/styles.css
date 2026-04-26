@@ -1,0 +1,103 @@
+body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: rgb(49, 24, 71);
+    color: rgb(250, 215, 239);
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+#mensaje {
+    font-size: 22px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 15px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 6px;
+    background-color: rgb(120, 60, 180);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+button:hover {
+    background-color: rgb(150, 80, 220);
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(74, 35, 107);
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.precio {
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+.estado {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid rgb(49, 24, 71);
+}
+
+.disponible {
+    background-color: #00df77;
+}
+
+.no-disponible {
+    background-color: #ff4d4d;
+}
+
+li:hover {
+    background-color: rgb(90, 45, 130);
+    transform: scale(1.01);
+}
+
+#span {
+    display: block;
+    margin-top: 15px;
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+
+
+
+

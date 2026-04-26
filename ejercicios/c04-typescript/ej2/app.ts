@@ -3,7 +3,7 @@ const btnFiltrar = document.getElementById("filtrar") as HTMLButtonElement;
 const btnDisponibles = document.getElementById("mostrarDisponibles") as HTMLButtonElement;
 const btnTodos = document.getElementById("mostrarTodos") as HTMLButtonElement;
 const lista = document.getElementById("listado") as HTMLUListElement;
-const stats = document.getElementById("span") as HTMLParagraphElement;
+const stats = document.getElementById("stats") as HTMLParagraphElement;
 const mensaje = document.getElementById("mensaje") as HTMLParagraphElement;
 
 //interfaz
@@ -23,7 +23,7 @@ const catalogo: Libro[] = [
         titulo: "La metamorfosis",
         autor: "Guido Kaczka",
         precio: 300,
-        disponible: true,
+        disponible: false,
         genero: "Drama"
     },
     {
@@ -31,7 +31,7 @@ const catalogo: Libro[] = [
         titulo: "Flatout 2",
         autor: "Bugbear",
         precio: 350,
-        disponible: false,
+        disponible: true,
         genero: "Acción"
     },
     {
@@ -52,11 +52,19 @@ const catalogo: Libro[] = [
     },
     {
         isbn: "555-555-555",
-        titulo: "RDR2",
+        titulo: "RDR 2",
         autor: "Rockstar",
         precio: 1000,
         disponible: true,
         genero: "Época"
+    },
+    {
+        isbn: "666-666-666",
+        titulo: "Crash of the Titans",
+        autor: "Radical",
+        precio: 450,
+        disponible: false,
+        genero: "Fantasía"
     }
 ];
 
@@ -83,14 +91,14 @@ const librosDisponibles = () => {
     return resultado;
 }
 
-const precioPromedio = () => {
+const precioPromedio = (libros: Libro[]) => {
     let precioTotal: number = 0;
 
-    for (const l of catalogo) {
+    for (const l of libros) {
         precioTotal += l.precio;
     }
 
-    return precioTotal / catalogo.length;
+    return precioTotal / libros.length;
 }
 
 const renderizar = (libros: Libro[]) => {
@@ -98,15 +106,38 @@ const renderizar = (libros: Libro[]) => {
     lista.innerHTML = "" //limpia la lista
 
     if (libros.length === 0) {
-        mensaje.textContent = "No se encontraron libros para el autor ingresado.";
+        mensaje.textContent = "No se encontraron libros para el autor ingresado";
+        stats.textContent = "";
         return;
     }
 
     for (const l of libros) {
         const li = document.createElement("li");
-        li.textContent = `${l.titulo} - ${l.autor}`;
+        //título y autor
+        const texto = document.createElement("span");
+        texto.textContent = `${l.titulo} - ${l.autor}`;
+
+        //precio (para q no quede pegado al titulo)
+        const pre = document.createElement("span");
+        pre.textContent = `$${l.precio}`;
+        pre.classList.add("precio");
+
+        //disponibiliad visible
+        const estado = document.createElement("span");
+        estado.classList.add("estado");
+        estado.classList.add(l.disponible ? "disponible" : "no-disponible");
+
+        //armado del elemento li
+        li.appendChild(texto);
+        li.appendChild(pre);
+        li.appendChild(estado);
+
         lista.appendChild(li);
+
+    
     }
+
+    stats.textContent = `Cantidad de libros: ${libros.length} | Precio promedio: $${precioPromedio(libros).toFixed(2)}`;
 }
 
 btnFiltrar.addEventListener("click", () => {
@@ -128,4 +159,3 @@ btnTodos.addEventListener("click", () => {
 });
 
 renderizar(catalogo);
-stats.textContent = `Precio promedio: $${precioPromedio()}`;
