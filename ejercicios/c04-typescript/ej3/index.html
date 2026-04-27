@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Catálogo con ABM</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <div class="panel-izq">
+            <h1>Catálogo</h1>
+
+            <input type="text" id="filtroAutor" placeholder="Ingrese el nombre del autor">
+
+            <button id="filtrar">Filtrar por autor</button>
+            <button id="mostrarDisponibles">Solo disponibles</button>
+            <button id="mostrarTodos">Ver todos</button>
+
+    
+            <p id="mensaje">Todos los libros:</p>
+            <p id="stats"></p>
+
+            <ul id="listado"></ul>
+        </div>
+
+        <div class="panel-der">
+            <h2>Agregar libro</h2>
+            <form>
+                <input id="tit" placeholder="Título"/>
+                <input id="aut" placeholder="Autor"/>
+                <input id="valor" type="number" placeholder="Valor"/>
+                <input id="gen" placeholder="Género"/>            
+            
+                <label>
+                    <input type="checkbox" id="disponible"/>
+                    Disponible
+                </label>
+
+                <button type="submit">Agregar</button>
+
+            </form>
+
+            <div id="errorForm"></div>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
