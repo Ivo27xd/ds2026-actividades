@@ -1,0 +1,23 @@
+body {
+    background-color:#222222;
+    color: rgb(221, 221, 221);
+}
+
+#resultados {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.card {
+    color: #0e1a0d;
+    background-color: #60b35a;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+#error {
+    color: red;
+    margin-top: 10px;
+}
