@@ -1,0 +1,32 @@
+body {
+    background-color:rgb(211, 211, 211);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    color: rgb(42, 42, 42);
+}
+
+ul {
+    background-color: rgb(197, 197, 197);
+    list-style: none;
+    padding-left: 10px;
+    max-width: 600px;
+}
+
+li {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+#error {
+    color: red;
+    margin-top: 10px;
+}
+
+#loading {
+    font-style: italic;
+}
