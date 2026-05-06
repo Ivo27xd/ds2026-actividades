@@ -1,3 +1,19 @@
 body {
     margin: 10px;
+    background-color: rgb(227, 227, 227);
+}
+
+/* navbar */
+.container {
+    margin: 0;
+    /* ya viene con padding por default */
+}
+
+#icono-libro {
+    margin: 4px;
+}
+
+.nav-link {
+    color: rgb(240, 240, 240);
+    margin-right: 5px;
 }
