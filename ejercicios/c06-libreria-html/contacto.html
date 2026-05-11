@@ -43,6 +43,117 @@
         </div>
     </nav>
 
+    <section id="contacto" class="py-5">
+
+        <div class="container">
+
+            <!-- Título -->
+            <div class="text-center mb-5">
+
+                <h1 class="titulo-contacto">
+                    Contactanos
+                </h1>
+
+                <p class="subtitulo-contacto">
+                    ¿Tenés alguna consulta, sugerencia o reclamo?
+                </p>
+
+            </div>
+
+            <!-- Formulario -->
+            <div class="form-container mx-auto">
+
+                <form>
+
+                    <!-- Nombre -->
+                    <div class="mb-4">
+
+                        <label for="nombre" class="form-label">
+                            Nombre
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="nombre"
+                            required
+                        >
+
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mb-4">
+
+                        <label for="email" class="form-label">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            class="form-control"
+                            id="email"
+                            required
+                        >
+
+                    </div>
+
+                    <!-- Asunto -->
+                    <div class="mb-4">
+
+                        <label for="asunto" class="form-label">
+                            Asunto
+                        </label>
+
+                        <select
+                            class="form-select"
+                            id="asunto"
+                            required
+                        >
+                            <option value="">
+                                Seleccioná una opción
+                            </option>
+
+                            <option value="consulta">
+                                Consulta
+                            </option>
+
+                            <option value="reclamo">
+                                Reclamo
+                            </option>
+
+                            <option value="sugerencia">
+                                Sugerencia
+                            </option>
+                        </select>
+
+                    </div>
+
+                    <!-- Mensaje -->
+                    <div class="mb-4">
+
+                        <label for="mensaje" class="form-label">
+                            Mensaje
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            id="mensaje"
+                            rows="6"
+                            required
+                        ></textarea>
+
+                    </div>
+
+                    <!-- Botón -->
+                    <div class="text-center">
+                        <button type="submit" class="btn-principal">Enviar mensaje</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </section>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/data.js"></script>
 </body>

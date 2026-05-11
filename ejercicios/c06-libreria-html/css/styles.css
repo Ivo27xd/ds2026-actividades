@@ -299,3 +299,64 @@ body {
 #loading {
     display: none;
 }
+
+/* contacto */
+#contacto {
+    min-height: 100vh;
+    background-color: #1b1f24;
+    color: #f8f9fa;
+}
+
+.titulo-contacto {
+    font-size: 3rem;
+    font-weight: bold;
+
+    margin-bottom: 10px;
+}
+
+.subtitulo-contacto {
+    color: #c7c7c7;
+
+    font-size: 1.1rem;
+}
+
+.form-container {
+    max-width: 580px;
+    background-color: #2a2f36;
+    padding: 32px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+}
+
+
+.form-label {
+    color: #f8f9fa;
+    margin-bottom: 10px;
+}
+
+.form-control,
+.form-select {
+    background-color: #23272d;
+    border: 1px solid #3a4048;
+    color: #f8f9fa;
+    padding: 11px 14px;
+    border-radius: 12px;
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: #23272d;
+    border-color: #7b2c2c;
+    box-shadow: 0 0 10px rgba(123,44,44,0.3);
+    color: #f8f9fa;
+}
+
+.form-control::placeholder {
+    color: #9ca3af;
+}
+
+.form-select option {
+    background-color: #23272d;
+
+    color: #f8f9fa;
+}

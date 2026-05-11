@@ -21,7 +21,6 @@ const obtenerLibros = async (query) => {
 const renderizarLibros = (libros) => {
 
     resultados.innerHTML = "";
-
     const row = document.createElement("div");
 
     row.classList.add(
@@ -46,16 +45,11 @@ const renderizarLibros = (libros) => {
             "justify-content-center"
         );
 
-        // card
         const card = document.createElement("div");
 
         card.classList.add("card", "h-100");
 
         card.style.width = "260px";
-
-        // =========================
-        // PORTADA
-        // =========================
 
         if (l.cover_i) {
 
@@ -70,8 +64,6 @@ const renderizarLibros = (libros) => {
             card.appendChild(img);
 
         } else {
-
-            // placeholder generado con JS
 
             const placeholder = document.createElement("div");
 
@@ -93,10 +85,6 @@ const renderizarLibros = (libros) => {
 
             card.appendChild(placeholder);
         }
-
-        // =========================
-        // BODY
-        // =========================
 
         const cardBody = document.createElement("div");
 
@@ -134,7 +122,6 @@ const renderizarLibros = (libros) => {
             "mt-auto"
         );
 
-        // append
         cardBody.appendChild(titulo);
         cardBody.appendChild(autor);
         cardBody.appendChild(botonVerMas);
@@ -158,20 +145,17 @@ boton.addEventListener("click", async () => {
     resultados.innerHTML = "";
 
     if (!query) {
-
         error.textContent = "Ingresá un término de búsqueda";
-
         return;
     }
 
     loading.style.display = "block";
 
     try {
-
+        
         const libros = await obtenerLibros(query);
-
         renderizarLibros(libros);
-
+        
     } catch {
 
         error.textContent = "Error al buscar libros";
