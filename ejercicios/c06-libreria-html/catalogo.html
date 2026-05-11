@@ -43,6 +43,55 @@
         </div>
     </nav>
 
+<section id="buscador-catalogo" class="py-5">
+
+    <div class="container">
+
+        <!-- Título -->
+        <div class="text-center mb-5">
+
+            <h1 class="titulo-catalogo">
+                Explorá el catálogo
+            </h1>
+
+            <p class="subtitulo-catalogo">
+                Descubrí historias, autores y mundos nuevos.
+            </p>
+
+        </div>
+
+        <!-- Buscador -->
+        <div class="buscador-container">
+
+            <input
+                type="text"
+                id="input"
+                placeholder="Buscar libros..."
+            >
+
+            <button
+                class="btn-principal"
+                id="btnBuscar"
+            >
+                Buscar
+            </button>
+
+        </div>
+
+        <!-- Estados -->
+        <p id="loading" class="texto-estado">
+            Cargando...
+        </p>
+
+        <p id="error" class="texto-error"></p>
+
+        <!-- Resultados -->
+        <div id="resultados" class="mt-5"></div>
+
+    </div>
+
+</section>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/data.js"></script>
 </body>

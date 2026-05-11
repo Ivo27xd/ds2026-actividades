@@ -198,3 +198,104 @@ body {
 
     transform: translateY(-2px);
 }
+
+/* catálogo */
+
+#buscador-catalogo {
+    min-height: 100vh;
+
+    background-color: #1b1f24;
+
+    color: #f8f9fa;
+}
+
+/* TITULOS */
+
+.titulo-catalogo {
+    font-size: 3rem;
+    font-weight: bold;
+
+    margin-bottom: 10px;
+}
+
+.subtitulo-catalogo {
+    color: #c7c7c7;
+
+    font-size: 1.1rem;
+}
+
+/* BUSCADOR */
+
+.buscador-container {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+#input {
+    width: 400px;
+
+    max-width: 90%;
+
+    padding: 14px 18px;
+
+    border: 1px solid #3a4048;
+
+    border-radius: 14px;
+
+    background-color: #23272d;
+
+    color: #f8f9fa;
+
+    outline: none;
+
+    transition: 0.3s;
+}
+
+#input:focus {
+    border-color: #7b2c2c;
+
+    box-shadow: 0 0 10px rgba(123,44,44,0.3);
+}
+
+#input::placeholder {
+    color: #9ca3af;
+}
+
+/* ESTADOS */
+
+.texto-estado,
+.texto-error {
+    text-align: center;
+
+    margin-top: 20px;
+}
+
+.texto-error {
+    color: #d46a6a;
+}
+
+/* imagen placeholder */
+.placeholder-cover {
+    height: 220px;
+
+    background-color: #23272d;
+
+    color: #c7c7c7;
+
+    padding: 10px;
+}
+
+.card-img-top,
+.placeholder-cover {
+    height: 320px;
+    width: 100%;
+}
+
+#loading {
+    display: none;
+}
