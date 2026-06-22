@@ -1,0 +1,27 @@
+.libro-card {
+    background-color: #2a2f36 !important;
+
+    color: #f8f9fa;
+
+    border: none;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    transition: all 0.3s ease;
+}
+
+.libro-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+}
+
+.libro-card .card-text {
+    color: #c7c7c7 !important;
+}
+
+.libro-card img {
+    background-color: #23272d;
+}
