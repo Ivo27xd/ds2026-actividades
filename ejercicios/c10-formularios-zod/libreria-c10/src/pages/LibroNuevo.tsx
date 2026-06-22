@@ -1,8 +1,18 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import Container from 'react-bootstrap/Container'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+
+import { libroSchema } from '../schemas/libroSchema'
+
+import type { LibroValidado } from '../schemas/libroSchema'
+
 type Props = {
-    agregarLibro: (libro: any) => void
+    agregarLibro: (
+        libro: LibroValidado
+    ) => void
 }
 
 function LibroNuevo({ agregarLibro }: Props) {
@@ -40,88 +50,126 @@ function LibroNuevo({ agregarLibro }: Props) {
     ) => {
         e.preventDefault()
 
-        const nuevosErrores = {
+        const resultado = libroSchema.safeParse({
+            ...formulario,
+            precio: Number(formulario.precio)
+        })
+
+        if (!resultado.success) {
+            const nuevosErrores = {
+                titulo: '',
+                autor: '',
+                precio: ''
+            }
+
+            resultado.error.issues.forEach(issue => {
+                const campo =
+                    issue.path[0] as keyof typeof nuevosErrores
+
+                nuevosErrores[campo] = issue.message
+            })
+
+            setErrores(nuevosErrores)
+            return
+        }
+
+        setErrores({
             titulo: '',
             autor: '',
             precio: ''
-        }
-
-        if (formulario.titulo.trim() === '')
-            nuevosErrores.titulo =
-                'Ingrese un título'
-
-        if (formulario.autor.trim() === '')
-            nuevosErrores.autor =
-                'Ingrese un autor'
-
-        if (
-            formulario.precio === '' ||
-            Number(formulario.precio) <= 0
-        )
-            nuevosErrores.precio =
-                'Ingrese un precio válido'
-
-        setErrores(nuevosErrores)
-
-        const hayErrores =
-            Object.values(nuevosErrores)
-                .some(error => error !== '')
-
-        if (hayErrores) return
-
-        agregarLibro({
-            titulo: formulario.titulo,
-            autor: formulario.autor,
-            precio: Number(formulario.precio),
-            disponible: formulario.disponible
         })
+
+        agregarLibro(resultado.data)
 
         navigate('/catalogo')
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <Container className="py-5">
+            <h1 className="mb-4">
+                Nuevo Libro
+            </h1>
 
-            <input
-                name="titulo"
-                value={formulario.titulo}
-                onChange={handleChange}
-                placeholder="Título"
-            />
-            <p>{errores.titulo}</p>
+            <Form onSubmit={handleSubmit}>
 
-            <input
-                name="autor"
-                value={formulario.autor}
-                onChange={handleChange}
-                placeholder="Autor"
-            />
-            <p>{errores.autor}</p>
+                <Form.Group className="mb-3">
+                    <Form.Label>
+                        Título
+                    </Form.Label>
 
-            <input
-                type="number"
-                name="precio"
-                value={formulario.precio}
-                onChange={handleChange}
-                placeholder="Precio"
-            />
-            <p>{errores.precio}</p>
+                    <Form.Control
+                        type="text"
+                        name="titulo"
+                        value={formulario.titulo}
+                        onChange={handleChange}
+                        isInvalid={!!errores.titulo}
+                    />
 
-            <label>
-                Disponible
-                <input
+                    <Form.Control.Feedback
+                        type="invalid"
+                    >
+                        {errores.titulo}
+                    </Form.Control.Feedback>
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <Form.Label>
+                        Autor
+                    </Form.Label>
+
+                    <Form.Control
+                        type="text"
+                        name="autor"
+                        value={formulario.autor}
+                        onChange={handleChange}
+                        isInvalid={!!errores.autor}
+                    />
+
+                    <Form.Control.Feedback
+                        type="invalid"
+                    >
+                        {errores.autor}
+                    </Form.Control.Feedback>
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <Form.Label>
+                        Precio
+                    </Form.Label>
+
+                    <Form.Control
+                        type="number"
+                        name="precio"
+                        value={formulario.precio}
+                        onChange={handleChange}
+                        isInvalid={!!errores.precio}
+                    />
+
+                    <Form.Control.Feedback
+                        type="invalid"
+                    >
+                        {errores.precio}
+                    </Form.Control.Feedback>
+                </Form.Group>
+
+                <Form.Check
+                    className="mb-4"
                     type="checkbox"
+                    label="Disponible"
                     name="disponible"
                     checked={formulario.disponible}
                     onChange={handleChange}
                 />
-            </label>
 
-            <button type="submit">
-                Guardar
-            </button>
+                <Button
+                    type="submit"
+                    variant="success"
+                >
+                    Guardar
+                </Button>
 
-        </form>
+            </Form>
+        </Container>
     )
 }
 

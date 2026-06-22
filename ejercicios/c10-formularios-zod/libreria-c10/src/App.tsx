@@ -11,12 +11,15 @@ import LibroNuevo from './pages/LibroNuevo'
 import { libros } from './data/libros'
 import type { Libro } from './types/Libro'
 
+import type {
+    LibroValidado
+} from './schemas/libroSchema'
 
 function App() {
     const [catalogo, setCatalogo] = useState<Libro[]>(libros)
 
     const agregarLibro = (
-        nuevoLibro: Omit<Libro, 'id'>
+        nuevoLibro: LibroValidado
     ) => {
         const libroCompleto: Libro = {
             id: catalogo.length + 1,
