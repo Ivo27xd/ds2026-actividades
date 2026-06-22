@@ -1,13 +1,14 @@
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+import type { LibroValidado } from '../schemas/libroSchema'
+import { libroSchema } from '../schemas/libroSchema'
 
 import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-
-import { libroSchema } from '../schemas/libroSchema'
-
-import type { LibroValidado } from '../schemas/libroSchema'
 
 type Props = {
     agregarLibro: (
@@ -18,68 +19,18 @@ type Props = {
 function LibroNuevo({ agregarLibro }: Props) {
     const navigate = useNavigate()
 
-    const [formulario, setFormulario] = useState({
-        titulo: '',
-        autor: '',
-        precio: '',
-        disponible: false
+    const {
+        register,
+        handleSubmit,
+        formState: { errors }
+    } = useForm<LibroValidado>({
+        resolver: zodResolver(libroSchema)
     })
 
-    const [errores, setErrores] = useState({
-        titulo: '',
-        autor: '',
-        precio: ''
-    })
-
-    const handleChange = (
-        e: React.ChangeEvent<HTMLInputElement>
+    const onSubmit = (
+        data: LibroValidado
     ) => {
-        const { name, value, checked, type } = e.target
-
-        setFormulario({
-            ...formulario,
-            [name]:
-                type === 'checkbox'
-                    ? checked
-                    : value
-        })
-    }
-
-    const handleSubmit = (
-        e: React.FormEvent
-    ) => {
-        e.preventDefault()
-
-        const resultado = libroSchema.safeParse({
-            ...formulario,
-            precio: Number(formulario.precio)
-        })
-
-        if (!resultado.success) {
-            const nuevosErrores = {
-                titulo: '',
-                autor: '',
-                precio: ''
-            }
-
-            resultado.error.issues.forEach(issue => {
-                const campo =
-                    issue.path[0] as keyof typeof nuevosErrores
-
-                nuevosErrores[campo] = issue.message
-            })
-
-            setErrores(nuevosErrores)
-            return
-        }
-
-        setErrores({
-            titulo: '',
-            autor: '',
-            precio: ''
-        })
-
-        agregarLibro(resultado.data)
+        agregarLibro(data)
 
         navigate('/catalogo')
     }
@@ -90,7 +41,7 @@ function LibroNuevo({ agregarLibro }: Props) {
                 Nuevo Libro
             </h1>
 
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit(onSubmit)}>
 
                 <Form.Group className="mb-3">
                     <Form.Label>
@@ -98,17 +49,12 @@ function LibroNuevo({ agregarLibro }: Props) {
                     </Form.Label>
 
                     <Form.Control
-                        type="text"
-                        name="titulo"
-                        value={formulario.titulo}
-                        onChange={handleChange}
-                        isInvalid={!!errores.titulo}
+                        {...register('titulo')}
+                        isInvalid={!!errors.titulo}
                     />
 
-                    <Form.Control.Feedback
-                        type="invalid"
-                    >
-                        {errores.titulo}
+                    <Form.Control.Feedback type="invalid">
+                        {errors.titulo?.message}
                     </Form.Control.Feedback>
                 </Form.Group>
 
@@ -118,17 +64,12 @@ function LibroNuevo({ agregarLibro }: Props) {
                     </Form.Label>
 
                     <Form.Control
-                        type="text"
-                        name="autor"
-                        value={formulario.autor}
-                        onChange={handleChange}
-                        isInvalid={!!errores.autor}
+                        {...register('autor')}
+                        isInvalid={!!errors.autor}
                     />
 
-                    <Form.Control.Feedback
-                        type="invalid"
-                    >
-                        {errores.autor}
+                    <Form.Control.Feedback type="invalid">
+                        {errors.autor?.message}
                     </Form.Control.Feedback>
                 </Form.Group>
 
@@ -139,16 +80,14 @@ function LibroNuevo({ agregarLibro }: Props) {
 
                     <Form.Control
                         type="number"
-                        name="precio"
-                        value={formulario.precio}
-                        onChange={handleChange}
-                        isInvalid={!!errores.precio}
+                        {...register('precio', {
+                            valueAsNumber: true
+                        })}
+                        isInvalid={!!errors.precio}
                     />
 
-                    <Form.Control.Feedback
-                        type="invalid"
-                    >
-                        {errores.precio}
+                    <Form.Control.Feedback type="invalid">
+                        {errors.precio?.message}
                     </Form.Control.Feedback>
                 </Form.Group>
 
@@ -156,9 +95,7 @@ function LibroNuevo({ agregarLibro }: Props) {
                     className="mb-4"
                     type="checkbox"
                     label="Disponible"
-                    name="disponible"
-                    checked={formulario.disponible}
-                    onChange={handleChange}
+                    {...register('disponible')}
                 />
 
                 <Button
