@@ -1,0 +1,14 @@
+### Inicio
+GET http://localhost:3000/
+
+### Todos los libros
+GET http://localhost:3000/libros
+
+### Solo disponibles
+GET http://localhost:3000/libros?disponible=true
+
+### Solo no disponibles
+GET http://localhost:3000/libros?disponible=false
+
+### Autores
+GET http://localhost:3000/autores
