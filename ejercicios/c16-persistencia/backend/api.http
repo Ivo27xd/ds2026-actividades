@@ -1,0 +1,107 @@
+### Inicio
+GET http://localhost:3000/
+
+
+### Todos los libros
+GET http://localhost:3000/api/libros
+
+
+### Solo disponibles
+GET http://localhost:3000/api/libros?disponible=true
+
+
+### Solo no disponibles
+GET http://localhost:3000/api/libros?disponible=false
+
+
+### Autores
+GET http://localhost:3000/api/autores
+
+
+### Obtener autor por id
+GET http://localhost:3000/api/autores/4
+
+
+### Autor inexistente
+Get http://localhost:3000/api/autores/99
+
+
+### Crear libro
+POST http://localhost:3000/api/libros
+Content-Type: application/json
+
+{
+  "titulo": "El Principito",
+  "autor": "Antoine de Saint-Exupéry",
+  "precio": 17000,
+  "imagen": "/imagenes/el_principito.webp",
+  "disponible": true
+}
+
+
+### Crear autor
+POST http://localhost:3000/api/autores
+Content-Type: application/json
+
+{
+    "nombre": "Julio Cortázar",
+    "nacionalidad": "Argentina"
+}
+
+
+### Modificar libro
+PUT http://localhost:3000/api/libros/3
+Content-Type: application/json
+
+{
+  "titulo": "El Hombre Invisible",
+  "autor": "H.G. Wells",
+  "precio": 25000,
+  "imagen": "/imagenes/el_hombre_invisible.jpg",
+  "disponible": true
+}
+
+
+### Modificar libro inexistente
+PUT http://localhost:3000/api/libros/99
+Content-Type: application/json
+
+{
+  "titulo": "Libro inexistente",
+  "autor": "Autor",
+  "precio": 1000,
+  "imagen": "/imagenes/libro.jpg",
+  "disponible": false
+}
+
+
+### Modificar autor
+PUT http://localhost:3000/api/autores/3
+Content-Type: application/json
+
+{
+    "nombre": "H.G. Wells",
+    "nacionalidad": "Inglaterra"
+}
+
+
+### Modificar autor inexistente
+PUT http://localhost:3000/api/autores/99
+Content-Type: application/json
+
+{
+    "nombre": "Autor",
+    "nacionalidad": "País"
+}
+
+
+### Eliminar libro
+DELETE http://localhost:3000/api/libros/1
+
+
+### Eliminar autor
+DELETE http://localhost:3000/api/autores/3
+
+
+### Eliminar autor inexistente
+DELETE http://localhost:3000/api/autores/99
