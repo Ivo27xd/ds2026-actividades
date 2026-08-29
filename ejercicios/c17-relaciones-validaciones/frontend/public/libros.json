@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "titulo": "Peter Pan",
+    "autor": "Barrie J.M.",
+    "imagen": "/imagenes/peter_pan.webp",
+    "precio": 15000,
+    "disponible": true
+  },
+  {
+    "id": 2,
+    "titulo": "La Invención de Morel",
+    "autor": "Adolfo Bioy Casares",
+    "imagen": "/imagenes/lidm.webp",
+    "precio": 18000,
+    "disponible": true
+  },
+  {
+    "id": 3,
+    "titulo": "El Hombre Invisible",
+    "autor": "H.G. Wells",
+    "imagen": "/imagenes/el_hombre_invisible.jpg",
+    "precio": 22000,
+    "disponible": false
+  },
+  {
+    "id": 4,
+    "titulo": "El Italiano",
+    "autor": "Tito Calderón",
+    "imagen": "/imagenes/el_italiano.png",
+    "precio": 19000,
+    "disponible": true
+  },
+  {
+    "id": 5,
+    "titulo": "Dragon Ball Piccolo 3",
+    "autor": "Akira Toriyama",
+    "imagen": "/imagenes/dragon_ball.webp",
+    "precio": 12000,
+    "disponible": true
+  },
+  {
+    "id": 6,
+    "titulo": "Babel",
+    "autor": "R.F. Kuang",
+    "imagen": "/imagenes/babel.webp",
+    "precio": 35000,
+    "disponible": false
+  }
+]

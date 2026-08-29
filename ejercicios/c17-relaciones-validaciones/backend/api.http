@@ -1,0 +1,160 @@
+### Inicio
+GET http://localhost:3000/
+
+
+### ==========================================
+### LIBRO - CASOS ÉXITO Y BÚSQUEDA
+### ==========================================
+
+### Todos los libros
+GET http://localhost:3000/api/libros
+
+### Solo disponibles
+GET http://localhost:3000/api/libros?disponible=true
+
+### Solo no disponibles
+GET http://localhost:3000/api/libros?disponible=false
+
+### Obtener libro por id (incluye autor y categorías)
+GET http://localhost:3000/api/libros/1
+
+### Crear libro
+POST http://localhost:3000/api/libros
+Content-Type: application/json
+
+{
+  "titulo": "Fahrenheit 451",
+  "precio": 21000,
+  "imagen": "/imagenes/fahrenheit.jpg",
+  "disponible": true,
+  "autorId": 3
+}
+
+### Modificar libro OK
+PUT http://localhost:3000/api/libros/3
+Content-Type: application/json
+
+{
+  "titulo": "El Hombre Invisible",
+  "precio": 25000,
+  "imagen": "/imagenes/el_hombre_invisible.jpg",
+  "disponible": true
+}
+
+### Eliminar libro OK
+DELETE http://localhost:3000/api/libros/1
+
+
+### ==========================================
+### LIBRO - ERRORES (400, 404, 409)
+### ==========================================
+
+### 400 Bad Request - Formato o body inválido (sin título/precio negativo)
+POST http://localhost:3000/api/libros
+Content-Type: application/json
+
+{
+  "precio": -500,
+  "imagen": "/imagenes/fahrenheit.jpg",
+  "autorId": 3
+}
+
+### 400 Bad Request - Params ID inválido (string en vez de número)
+GET http://localhost:3000/api/libros/abc
+
+### 404 Not Found - Libro inexistente
+GET http://localhost:3000/api/libros/99
+
+### 404 Not Found - Modificar libro inexistente
+PUT http://localhost:3000/api/libros/99
+Content-Type: application/json
+
+{
+  "titulo": "Libro inexistente",
+  "precio": 1000,
+  "imagen": "/imagenes/libro.jpg",
+  "disponible": false
+}
+
+### 409 Conflict - Crear libro con autorId inexistente (Error FK P2003)
+POST http://localhost:3000/api/libros
+Content-Type: application/json
+
+{
+  "titulo": "Libro Huérfano",
+  "precio": 21000,
+  "imagen": "/imagenes/fahrenheit.jpg",
+  "disponible": true,
+  "autorId": 9999
+}
+
+
+### ==========================================
+### AUTOR - CASOS ÉXITO Y BÚSQUEDA
+### ==========================================
+
+### Todos los autores
+GET http://localhost:3000/api/autores
+
+### Obtener autor por id
+GET http://localhost:3000/api/autores/4
+
+### Crear autor OK
+POST http://localhost:3000/api/autores
+Content-Type: application/json
+
+{
+  "nombre": "Julio Cortázar",
+  "nacionalidad": "Argentina"
+}
+
+### Modificar autor OK
+PUT http://localhost:3000/api/autores/3
+Content-Type: application/json
+
+{
+  "nombre": "H.G. Wells",
+  "nacionalidad": "Inglaterra"
+}
+
+### Eliminar autor (si se hizo la request de eliminar el libro 1, elimina el autor 1; sino tira 409)
+DELETE http://localhost:3000/api/autores/1
+
+### ==========================================
+### AUTOR - ERRORES (400, 404, 409)
+### ==========================================
+
+### 400 Bad Request - Crear autor con body incompleto (Zod)
+POST http://localhost:3000/api/autores
+Content-Type: application/json
+
+{
+  "nacionalidad": "Argentina"
+}
+
+### 404 Not Found - Autor inexistente
+GET http://localhost:3000/api/autores/99
+
+### 404 Not Found - Modificar autor inexistente
+PUT http://localhost:3000/api/autores/99
+Content-Type: application/json
+
+{
+  "nombre": "Autor Inexistente",
+  "nacionalidad": "País"
+}
+
+### 404 Not Found - Eliminar autor inexistente
+DELETE http://localhost:3000/api/autores/99
+
+### 409 Conflict - Autor duplicado (Violación @unique P2002)
+POST http://localhost:3000/api/autores
+Content-Type: application/json
+
+{
+  "nombre": "H.G. Wells",
+  "nacionalidad": "Reino Unido"
+}
+
+### 409 Conflict - Eliminar autor con libros asociados (onDelete: Restrict P2003)
+DELETE http://localhost:3000/api/autores/3
