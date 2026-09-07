@@ -1,0 +1,228 @@
+/* navbar */
+
+
+
+/* hero */
+.hero {
+    min-height: 100vh;
+
+        background:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.45) 0%,
+            rgba(0,0,0,0.55) 60%,
+            rgba(0,0,0,0.75) 100%
+        ),
+        url('../img/libros.jpg');
+
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+}
+
+#container-hero {
+    transform: translateY(-40px);
+}
+
+.hero h1 {
+    font-weight: bold;
+} 
+
+/* destacados */
+#destacados {
+    background-color: #1b1f24;
+}
+
+#titulo-destacados {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 50px;
+    color: #f8f9fa;
+
+    position: relative;
+}
+
+#titulo-destacados::after {
+    content: "";
+    display: block;
+
+    width: 200px;
+    height: 3px;
+
+    background-color: #7b2c2c;
+
+    margin: 15px auto 0;
+    border-radius: 10px;
+}
+
+/* Libro detalle */
+
+
+/* botones */
+/* catálogo */
+
+#buscador-catalogo {
+    min-height: 100vh;
+
+    background-color: #1b1f24;
+
+    color: #f8f9fa;
+}
+
+/* TITULOS */
+
+.titulo-catalogo {
+    font-size: 3rem;
+    font-weight: bold;
+
+    margin-bottom: 10px;
+}
+
+.subtitulo-catalogo {
+    color: #c7c7c7;
+
+    font-size: 1.1rem;
+}
+
+/* BUSCADOR */
+
+.buscador-container {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+#input {
+    width: 400px;
+
+    max-width: 90%;
+
+    padding: 14px 18px;
+
+    border: 1px solid #3a4048;
+
+    border-radius: 14px;
+
+    background-color: #23272d;
+
+    color: #f8f9fa;
+
+    outline: none;
+
+    transition: 0.3s;
+}
+
+#input:focus {
+    border-color: #7b2c2c;
+
+    box-shadow: 0 0 10px rgba(123,44,44,0.3);
+}
+
+#input::placeholder {
+    color: #9ca3af;
+}
+
+/* ESTADOS */
+
+.texto-estado,
+.texto-error {
+    text-align: center;
+
+    margin-top: 20px;
+}
+
+.texto-error {
+    color: #d46a6a;
+}
+
+/* imagen placeholder */
+.placeholder-cover {
+    height: 220px;
+
+    background-color: #23272d;
+
+    color: #c7c7c7;
+
+    padding: 10px;
+}
+
+.card-img-top,
+.placeholder-cover {
+    height: 320px;
+    width: 100%;
+}
+
+#loading {
+    display: none;
+}
+
+/* contacto */
+#contacto {
+    min-height: 100vh;
+    background-color: #1b1f24;
+    color: #f8f9fa;
+}
+
+.titulo-contacto {
+    font-size: 3rem;
+    font-weight: bold;
+
+    margin-bottom: 10px;
+}
+
+.subtitulo-contacto {
+    color: #c7c7c7;
+
+    font-size: 1.1rem;
+}
+
+.form-container {
+    max-width: 580px;
+    background-color: #2a2f36;
+    padding: 32px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+}
+
+
+.form-label {
+    color: #f8f9fa;
+    margin-bottom: 10px;
+}
+
+.form-control,
+.form-select {
+    background-color: #23272d;
+    border: 1px solid #3a4048;
+    color: #f8f9fa;
+    padding: 11px 14px;
+    border-radius: 12px;
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: #23272d;
+    border-color: #7b2c2c;
+    box-shadow: 0 0 10px rgba(123,44,44,0.3);
+    color: #f8f9fa;
+}
+
+.form-control::placeholder {
+    color: #9ca3af;
+}
+
+.form-select option {
+    background-color: #23272d;
+
+    color: #f8f9fa;
+}
