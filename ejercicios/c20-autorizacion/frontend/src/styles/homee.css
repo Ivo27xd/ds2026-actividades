@@ -1,0 +1,21 @@
+.home-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.home-title::after {
+    content: "";
+
+    display: block;
+
+    width: 180px;
+    height: 3px;
+
+    background-color: #7b2c2c;
+
+    margin: 15px auto 0;
+
+    border-radius: 10px;
+}
