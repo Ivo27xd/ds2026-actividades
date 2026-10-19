@@ -1,0 +1,277 @@
+### ==========================================
+### INICIO
+### ==========================================
+GET http://localhost:3000/
+
+
+### ==========================================
+### AUTENTICACIÓN Y AUTORIZACIÓN (CASOS 1 A 8)
+### ==========================================
+
+### 1. Registro Exitoso (201 sin passwordHash)
+POST http://localhost:3000/api/auth/registro
+Content-Type: application/json
+
+{
+  "nombre": "Ana Clara",
+  "email": "ana@libreria.test",
+  "password": "Libreria2026"
+}
+
+### 2. Registro Duplicado (409 Conflict - Prisma P2002)
+POST http://localhost:3000/api/auth/registro
+Content-Type: application/json
+
+{
+  "nombre": "Ana Repetida",
+  "email": "ana@libreria.test",
+  "password": "Libreria2026"
+}
+
+### 3. Registro Password Débil / Corta (400 Bad Request)
+POST http://localhost:3000/api/auth/registro
+Content-Type: application/json
+
+{
+  "nombre": "Test Error",
+  "email": "test@libreria.test",
+  "password": "123"
+}
+
+### 4. Login Email Inexistente (401 Unauthorized - Mensaje genérico)
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "noexiste@libreria.test",
+  "password": "Libreria2026"
+}
+
+### 5. Login Password Incorrecta (401 Unauthorized - Mensaje genérico)
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "ana@libreria.test",
+  "password": "PasswordIncorrecta123"
+}
+
+### 6a. Login Exitoso ADMIN
+# @name loginAdmin
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@libreria.test",
+  "password": "Admin1234"
+}
+
+### Variable para guardar el Token Admin
+@tokenAdmin = {{loginAdmin.response.body.token}}
+
+
+### 6b. Login Exitoso CLIENTE
+# @name loginCliente
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "cliente@libreria.test",
+  "password": "Cliente1234"
+}
+
+### Variable para guardar el Token Cliente
+@tokenCliente = {{loginCliente.response.body.token}}
+
+
+### 7. GET /api/auth/yo Sin Token (401 Unauthorized)
+GET http://localhost:3000/api/auth/yo
+
+
+### 8. GET /api/auth/yo Con Token (200 OK)
+GET http://localhost:3000/api/auth/yo
+Authorization: Bearer {{tokenCliente}}
+
+
+### ==========================================
+### LIBRO - CASOS ÉXITO Y BÚSQUEDA (PÚBLICOS)
+### ==========================================
+
+### 12. Todos los libros (Público)
+GET http://localhost:3000/api/libros
+
+### Solo disponibles
+GET http://localhost:3000/api/libros?disponible=true
+
+### Solo no disponibles
+GET http://localhost:3000/api/libros?disponible=false
+
+### Obtener libro por id
+GET http://localhost:3000/api/libros/1
+
+
+### ==========================================
+### LIBRO - PERMISOS DE ESCRITURA (CASOS 9 A 11)
+### ==========================================
+
+### 9. POST /api/libros Sin Token (401 Unauthorized)
+POST http://localhost:3000/api/libros
+Content-Type: application/json
+
+{
+  "titulo": "Fahrenheit 451",
+  "precio": 21000,
+  "imagen": "/imagenes/fahrenheit.jpg",
+  "disponible": true,
+  "autorId": 3
+}
+
+### 10. POST /api/libros Con Rol CLIENTE (403 Forbidden)
+POST http://localhost:3000/api/libros
+Authorization: Bearer {{tokenCliente}}
+Content-Type: application/json
+
+{
+  "titulo": "Fahrenheit 451",
+  "precio": 21000,
+  "imagen": "/imagenes/fahrenheit.jpg",
+  "disponible": true,
+  "autorId": 3
+}
+
+### 11. POST /api/libros Con Rol ADMIN (201 Created)
+POST http://localhost:3000/api/libros
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{
+  "titulo": "Fahrenheit 451",
+  "precio": 21000,
+  "imagen": "/imagenes/fahrenheit.jpg",
+  "disponible": true,
+  "autorId": 3
+}
+
+### Modificar libro OK (Solo ADMIN)
+PUT http://localhost:3000/api/libros/3
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{
+  "titulo": "El Hombre Invisible (Edición Especial)",
+  "precio": 25000,
+  "imagen": "/imagenes/el_hombre_invisible.jpg",
+  "disponible": true
+}
+
+### Eliminar libro OK (Solo ADMIN)
+DELETE http://localhost:3000/api/libros/1
+Authorization: Bearer {{tokenAdmin}}
+
+
+### ==========================================
+### LIBRO - ERRORES GENERALES (400, 404, 409)
+### ==========================================
+
+### 400 Bad Request - Body inválido (precio negativo con Admin)
+POST http://localhost:3000/api/libros
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{
+  "precio": -500,
+  "imagen": "/imagenes/fahrenheit.jpg",
+  "autorId": 3
+}
+
+### 400 Bad Request - Params ID inválido (string)
+GET http://localhost:3000/api/libros/abc
+
+### 404 Not Found - Libro inexistente
+GET http://localhost:3000/api/libros/99
+
+### 404 Not Found - Modificar libro inexistente
+PUT http://localhost:3000/api/libros/99
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{
+  "titulo": "Libro inexistente",
+  "precio": 1000,
+  "imagen": "/imagenes/libro.jpg",
+  "disponible": false
+}
+
+### 409 Conflict - Crear libro con autorId inexistente (Prisma P2003)
+POST http://localhost:3000/api/libros
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{
+  "titulo": "Libro Huérfano",
+  "precio": 21000,
+  "imagen": "/imagenes/fahrenheit.jpg",
+  "disponible": true,
+  "autorId": 9999
+}
+
+
+### ==========================================
+### AUTOR - PERMISOS Y OPERACIONES
+### ==========================================
+
+### Todos los autores (Público)
+GET http://localhost:3000/api/autores
+
+### Obtener autor por id (Público)
+GET http://localhost:3000/api/autores/4
+
+### Crear autor OK (Solo ADMIN)
+POST http://localhost:3000/api/autores
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{
+  "nombre": "Julio Cortázar",
+  "nacionalidad": "Argentina"
+}
+
+### Modificar autor OK (Solo ADMIN)
+PUT http://localhost:3000/api/autores/3
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{
+  "nombre": "H.G. Wells",
+  "nacionalidad": "Inglaterra"
+}
+
+### Eliminar autor OK (Solo ADMIN)
+DELETE http://localhost:3000/api/autores/1
+Authorization: Bearer {{tokenAdmin}}
+
+### 400 Bad Request - Crear autor incompleto
+POST http://localhost:3000/api/autores
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{
+  "nacionalidad": "Argentina"
+}
+
+### 404 Not Found - Autor inexistente
+GET http://localhost:3000/api/autores/99
+
+### 409 Conflict - Autor duplicado (Prisma P2002)
+POST http://localhost:3000/api/autores
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{
+  "nombre": "H.G. Wells",
+  "nacionalidad": "Reino Unido"
+}
+
+### 409 Conflict - Eliminar autor con libros (Prisma P2003)
+DELETE http://localhost:3000/api/autores/3
+Authorization: Bearer {{tokenAdmin}}
