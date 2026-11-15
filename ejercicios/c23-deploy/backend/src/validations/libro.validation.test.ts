@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { libroCreateSchema, idParamSchema } from "./libro.validation";
+import { libroCreateSchema, libroUpdateSchema, idParamSchema, IMAGEN_PLACEHOLDER } from "./libro.validation";
 
 const libroValido = {
   titulo: "Rayuela",
@@ -19,6 +19,28 @@ describe("libroCreateSchema (Unitario)", () => {
     expect(res.success).toBe(true);
     if (res.success) {
       expect(res.data.titulo).toBe("Rayuela");
+    }
+  });
+
+  it("asigna la imagen placeholder si no se envía imagen", () => {
+    const res = libroCreateSchema.safeParse({
+      titulo: "Rayuela",
+      precio: 7000,
+      imagen: "   ",
+      autorId: 1,
+    });
+    expect(res.success).toBe(true);
+    if (res.success) {
+      expect(res.data.imagen).toBe(IMAGEN_PLACEHOLDER);
+    }
+  });
+
+  it("no pisa la imagen existente en libroUpdateSchema cuando no se envía", () => {
+    const res = libroUpdateSchema.safeParse({ disponible: false });
+    expect(res.success).toBe(true);
+    if (res.success) {
+      expect(res.data).toEqual({ disponible: false });
+      expect("imagen" in res.data).toBe(false);
     }
   });
 

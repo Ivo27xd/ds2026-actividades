@@ -10,7 +10,7 @@ const app = express();
 
 const origenesPermitidos = (process.env.FRONTEND_URL ?? "http://localhost:5173")
   .split(",")
-  .map((url) => url.trim())
+  .map((url) => url.trim().replace(/\/+$/, ""))
   .filter(Boolean);
 
 const corsOptions = {

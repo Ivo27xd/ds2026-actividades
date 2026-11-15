@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 510" role="img" aria-label="Portada no disponible">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1f242d" />
+      <stop offset="100%" stop-color="#14181f" />
+    </linearGradient>
+    <linearGradient id="spine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.08)" />
+      <stop offset="100%" stop-color="rgba(255,255,255,0)" />
+    </linearGradient>
+  </defs>
+
+  <rect width="360" height="510" fill="url(#bg)" />
+  <rect width="26" height="510" fill="url(#spine)" />
+  <rect x="26" y="0" width="1" height="510" fill="rgba(255,255,255,0.06)" />
+  <rect x="22" y="22" width="316" height="466" rx="10" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" />
+
+  <g transform="translate(180 220)" fill="none" stroke="#a8b0bc" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M-44 -26 H-8 C-1 -26 4 -21 4 -14 V34 C4 28 -1 24 -7 24 H-44 Z" fill="rgba(184, 59, 59, 0.14)" />
+    <path d="M44 -26 H8 C1 -26 -4 -21 -4 -14 V34 C-4 28 1 24 7 24 H44 Z" fill="rgba(184, 59, 59, 0.14)" />
+    <circle cx="0" cy="-48" r="4" fill="#b83b3b" stroke="none" />
+  </g>
+
+  <text x="180" y="302" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="600" fill="#f4f6f8">
+    Sin portada
+  </text>
+  <text x="180" y="328" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#a8b0bc">
+    Mi Librería
+  </text>
+</svg>

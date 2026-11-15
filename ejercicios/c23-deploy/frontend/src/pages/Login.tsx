@@ -30,35 +30,43 @@ export default function Login() {
   };
 
   return (
-    <Container className="mt-5" style={{ maxWidth: "400px" }}>
-      <h2 className="mb-4">Iniciar Sesión</h2>
-      {error && <Alert variant="danger">{error}</Alert>}
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Contraseña</Form.Label>
-          <Form.Control
-            type="password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit" className="w-100" disabled={enviando}>
-          {enviando ? "Ingresando..." : "Ingresar"}
-        </Button>
-      </Form>
-      <p className="text-center mt-3 mb-0">
-        ¿No tenés cuenta? <Link to="/registro">Registrate</Link>
-      </p>
+    <Container className="py-5" style={{ maxWidth: "440px" }}>
+      <div className="form-card">
+        <h1 className="h2 mb-2 text-center">Iniciar Sesión</h1>
+        <p className="text-secondary text-center small mb-4">
+          Ingresá con tu cuenta para continuar
+        </p>
+
+        {error && <Alert variant="danger">{error}</Alert>}
+
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group className="mb-4">
+            <Form.Label>Contraseña</Form.Label>
+            <Form.Control
+              type="password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Group>
+          <Button type="submit" className="btn-principal w-100" disabled={enviando}>
+            {enviando ? "Ingresando..." : "Ingresar"}
+          </Button>
+        </Form>
+
+        <p className="text-center text-secondary small mt-4 mb-0">
+          ¿No tenés cuenta? <Link to="/registro">Registrate</Link>
+        </p>
+      </div>
     </Container>
   );
 }

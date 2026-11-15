@@ -3,6 +3,7 @@ import Badge from 'react-bootstrap/Badge'
 import { Link } from 'react-router-dom'
 import MeGusta from './BotonLike'
 import type { Autor } from '../types/Autor'
+import type { Categoria } from '../types/Categoria'
 import '../styles/libroCard.css'
 
 type LibroCardProps = {
@@ -12,42 +13,53 @@ type LibroCardProps = {
     imagen: string
     precio: number
     disponible: boolean
+    categorias?: Categoria[]
 }
 
-function LibroCard({ id, titulo, autor, imagen, precio, disponible }: LibroCardProps) {
+function LibroCard({ id, titulo, autor, imagen, precio, disponible, categorias }: LibroCardProps) {
     const nombreAutor = typeof autor === 'object' ? autor.nombre : autor;
 
     return (
         <Card className="libro-card h-100">
-            <Card.Img
-                variant="top"
-                src={imagen}
-                alt={titulo}
-                loading="lazy"
-                style={{
-                    height: '420px',
-                    objectFit: 'cover'
-                }}
-            />
+            <div className="libro-card-media">
+                <Card.Img
+                    variant="top"
+                    src={imagen}
+                    alt={titulo}
+                    loading="lazy"
+                    className="libro-card-img"
+                />
+                <Badge
+                    bg={disponible ? "success" : "secondary"}
+                    className="libro-card-badge"
+                >
+                    {disponible ? "Disponible" : "Sin stock"}
+                </Badge>
+            </div>
 
             <Card.Body className="d-flex flex-column">
-                <div className="d-flex justify-content-between align-items-start gap-2 mb-1">
-                    <Card.Title className="mb-0">{titulo}</Card.Title>
-                    <Badge bg={disponible ? "success" : "secondary"}>
-                        {disponible ? "Disponible" : "Sin stock"}
-                    </Badge>
-                </div>
+                <Card.Title className="libro-card-title">{titulo}</Card.Title>
 
-                <Card.Text className="text-muted mb-2">
+                <Card.Text className="libro-card-autor">
                     {nombreAutor}
                 </Card.Text>
 
-                <p className="fw-bold fs-5 mb-3">
+                {categorias && categorias.length > 0 && (
+                    <div className="libro-card-categorias">
+                        {categorias.map((cat) => (
+                            <span key={cat.id} className="libro-card-cat">
+                                {cat.nombre}
+                            </span>
+                        ))}
+                    </div>
+                )}
+
+                <p className="libro-card-precio">
                     ${precio.toLocaleString("es-AR")}
                 </p>
 
-                <div className="mt-auto d-flex justify-content-between align-items-center">
-                    <Link to={`/libros/${id}`} className="btn btn-dark">
+                <div className="libro-card-actions">
+                    <Link to={`/libros/${id}`} className="btn-principal py-2 px-3">
                         Ver más
                     </Link>
 

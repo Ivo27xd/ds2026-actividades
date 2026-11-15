@@ -1,55 +1,19 @@
 #contacto {
-    min-height: 100vh;
-    background-color: #1b1f24;
-    color: #f8f9fa;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
 }
 
 .titulo-contacto {
-    font-size: 3rem;
-    font-weight: bold;
-    margin-bottom: 10px;
+  font-size: clamp(2.1rem, 4vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 0.6rem;
 }
 
 .subtitulo-contacto {
-    color: #c7c7c7;
-    font-size: 1.1rem;
+  color: var(--text-secondary);
+  font-size: 1.08rem;
 }
 
 .form-container {
-    max-width: 580px;
-    background-color: #2a2f36;
-    padding: 32px;
-    border-radius: 20px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-}
-
-#contacto .form-label {
-    color: #f8f9fa;
-    margin-bottom: 10px;
-}
-
-#contacto .form-control,
-#contacto .form-select {
-    background-color: #23272d;
-    border: 1px solid #3a4048;
-    color: #f8f9fa;
-    padding: 11px 14px;
-    border-radius: 12px;
-}
-
-#contacto .form-control:focus,
-#contacto .form-select:focus {
-    background-color: #23272d;
-    border-color: #7b2c2c;
-    box-shadow: 0 0 10px rgba(123,44,44,0.3);
-    color: #f8f9fa;
-}
-
-#contacto .form-control::placeholder {
-    color: #9ca3af;
-}
-
-#contacto .form-select option {
-    background-color: #23272d;
-    color: #f8f9fa;
+  max-width: 580px;
 }

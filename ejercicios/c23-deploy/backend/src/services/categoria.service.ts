@@ -5,3 +5,9 @@ export async function findAll() {
     orderBy: { id: "asc" },
   });
 }
+
+export async function create(nombre: string) {
+  return prisma.categoria.create({
+    data: { nombre },
+  });
+}

@@ -35,7 +35,7 @@ function Contacto() {
           </p>
         </div>
 
-        <div className="form-container mx-auto">
+        <div className="form-container form-card mx-auto">
           {enviado && (
             <Alert variant="success" dismissible onClose={() => setEnviado(false)}>
               ¡Gracias por tu mensaje! Te responderemos a la brevedad.
@@ -101,7 +101,7 @@ function Contacto() {
 
               <Form.Control
                 as="textarea"
-                rows={6}
+                rows={5}
                 required
                 value={mensaje}
                 onChange={(e) => setMensaje(e.target.value)}
@@ -111,7 +111,7 @@ function Contacto() {
             <div className="text-center">
               <Button
                 type="submit"
-                className="btn-principal"
+                className="btn-principal w-100"
               >
                 Enviar mensaje
               </Button>

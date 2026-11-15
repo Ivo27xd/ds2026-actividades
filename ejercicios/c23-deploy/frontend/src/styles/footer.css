@@ -1,7 +1,5 @@
 .footer-libreria {
-    background-color: #15181d;
-
-    color: white;
-
-    border-top: 1px solid #2a2f36;
+  background-color: var(--bg-surface);
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-subtle);
 }

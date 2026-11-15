@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Spinner from 'react-bootstrap/Spinner'
 import Alert from 'react-bootstrap/Alert'
+import { LuSearch, LuX } from 'react-icons/lu'
 
 import LibroCard from '../components/LibroCard'
 import { useFetch } from '../hooks/useFetch'
@@ -16,7 +17,6 @@ import '../styles/catalogo.css'
 
 function Catalogo() {
     const [busqueda, setBusqueda] = useState('')
-    const [soloDisponibles, setSoloDisponibles] = useState(false)
 
     const {
         data: libros,
@@ -44,7 +44,6 @@ function Catalogo() {
 
     const termino = busqueda.trim().toLowerCase()
     const librosFiltrados = (libros ?? []).filter((libro) => {
-        if (soloDisponibles && !libro.disponible) return false
         if (!termino) return true
 
         const coincideTitulo = libro.titulo.toLowerCase().includes(termino)
@@ -59,7 +58,7 @@ function Catalogo() {
     return (
         <section className="catalogo py-5">
             <Container>
-                <div className="text-center mb-5">
+                <div className="text-center mb-4">
                     <h1 className="titulo-catalogo">
                         Explorá el catálogo
                     </h1>
@@ -69,46 +68,43 @@ function Catalogo() {
                     </p>
                 </div>
 
-                <Form onSubmit={handleSubmit} className="buscador-container align-items-center">
-                    <Form.Control
-                        type="text"
-                        placeholder="Buscar por título o autor..."
-                        className="input-catalogo"
-                        value={busqueda}
-                        onChange={(e) => setBusqueda(e.target.value)}
-                    />
+                <Form onSubmit={handleSubmit} className="buscador-container mb-5">
+                    <div className="buscador-input-wrap">
+                        <LuSearch size={17} className="buscador-icono" />
+                        <Form.Control
+                            type="text"
+                            placeholder="Buscar por título o autor..."
+                            className="input-catalogo"
+                            value={busqueda}
+                            onChange={(e) => setBusqueda(e.target.value)}
+                        />
+                    </div>
 
-                    <Button type="submit" variant="danger">
+                    <Button type="submit" className="btn-principal py-2 px-4">
                         Buscar
                     </Button>
 
                     {busqueda && (
                         <Button
                             type="button"
-                            variant="outline-light"
+                            variant="outline-secondary"
+                            className="d-inline-flex align-items-center gap-1"
                             onClick={() => setBusqueda('')}
                         >
-                            Limpiar
+                            <LuX size={14} />
+                            <span>Limpiar</span>
                         </Button>
                     )}
-
-                    <Form.Check
-                        type="switch"
-                        id="filtro-disponibles"
-                        label="Solo disponibles"
-                        checked={soloDisponibles}
-                        onChange={(e) => setSoloDisponibles(e.target.checked)}
-                    />
                 </Form>
 
                 {librosFiltrados.length === 0 ? (
-                    <Alert variant="secondary" className="mt-5 text-center">
+                    <Alert variant="secondary" className="mt-4 text-center">
                         No se encontraron libros que coincidan con tu búsqueda.
                     </Alert>
                 ) : (
-                    <Row className="g-4 mt-4">
+                    <Row xs={1} sm={2} lg={3} className="g-4">
                         {librosFiltrados.map(libro => (
-                            <Col md={4} key={libro.id}>
+                            <Col key={libro.id}>
                                 <LibroCard
                                     id={libro.id}
                                     titulo={libro.titulo}
@@ -116,6 +112,7 @@ function Catalogo() {
                                     imagen={libro.imagen}
                                     precio={libro.precio}
                                     disponible={libro.disponible}
+                                    categorias={libro.categorias}
                                 />
                             </Col>
                         ))}

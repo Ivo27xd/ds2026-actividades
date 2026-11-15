@@ -1,34 +1,56 @@
 .catalogo {
-    min-height: 100vh;
-    background-color: #1b1f24;
-    color: #f8f9fa;
+  min-height: 100%;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
 }
 
 .titulo-catalogo {
-    font-size: 3rem;
-    font-weight: bold;
+  font-size: clamp(2.1rem, 4vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 0.6rem;
 }
 
 .subtitulo-catalogo {
-    color: #c7c7c7;
-    font-size: 1.1rem;
+  color: var(--text-secondary);
+  font-size: 1.08rem;
 }
 
 .buscador-container {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.buscador-input-wrap {
+  position: relative;
+  flex: 1 1 320px;
+  max-width: 460px;
+}
+
+.buscador-icono {
+  position: absolute;
+  left: 0.95rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+  pointer-events: none;
 }
 
 .input-catalogo {
-    width: 400px !important;
-    max-width: 90%;
+  padding-left: 2.5rem !important;
+  background-color: var(--bg-input) !important;
+  border: 1px solid var(--border-strong) !important;
+  color: var(--text-primary) !important;
+  border-radius: 10px !important;
 }
 
-.input-catalogo,
 .input-catalogo:focus {
-    background-color: #23272d;
-    border-color: #3a4048;
-    color: white;
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px var(--accent-soft) !important;
+}
+
+.input-catalogo::placeholder {
+  color: #6e7785;
 }

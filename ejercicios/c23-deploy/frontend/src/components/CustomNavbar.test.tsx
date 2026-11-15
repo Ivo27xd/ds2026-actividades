@@ -1,5 +1,9 @@
-import { describe, it, expect, vi } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { describe, it, expect, vi, afterEach } from "vitest";
+import { render, screen, cleanup } from "@testing-library/react";
+
+afterEach(() => {
+  cleanup();
+});
 import { MemoryRouter } from "react-router-dom";
 import CustomNavbar from "./CustomNavbar";
 import { useAuth } from "../context/useAuth";
@@ -48,7 +52,7 @@ describe("CustomNavbar (Testing Library)", () => {
     expect(screen.queryByText("Nuevo libro")).not.toBeInTheDocument();
   });
 
-  it("muestra el enlace 'Nuevo libro' cuando el usuario es ADMIN", () => {
+  it("muestra el enlace 'Nuevo libro' y oculta 'Contacto' cuando el usuario es ADMIN", () => {
     mockAuth({ id: 1, email: "admin@libreria.test", nombre: "Admin", rol: "ADMIN" });
 
     render(
@@ -58,5 +62,6 @@ describe("CustomNavbar (Testing Library)", () => {
     );
 
     expect(screen.getByRole("link", { name: "Nuevo libro" })).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "Contacto" })).not.toBeInTheDocument();
   });
 });

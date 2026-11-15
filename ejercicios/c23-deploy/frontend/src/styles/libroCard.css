@@ -1,31 +1,111 @@
 .libro-card {
-    background-color: #2a2f36 !important;
-
-    color: #f8f9fa;
-
-    border: none;
-
-    border-radius: 15px;
-
-    overflow: hidden;
-
-    transition: all 0.3s ease;
+  background-color: var(--bg-card) !important;
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radius-lg) !important;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .libro-card:hover {
-    transform: translateY(-5px);
-
-    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--border-strong) !important;
 }
 
-.libro-card .card-text {
-    color: #c7c7c7 !important;
+.libro-card-media {
+  position: relative;
+  overflow: hidden;
+  background-color: #161a21;
+  aspect-ratio: 3 / 4;
 }
 
-.libro-card img {
-    background-color: #23272d;
+.libro-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
 }
 
-.libro-card .card-title {
-    color: #f8f9fa !important;
+.libro-card:hover .libro-card-img {
+  transform: scale(1.03);
+}
+
+.libro-card-badge {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.42em 0.75em;
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+}
+
+.libro-card .card-body {
+  padding: 1.25rem;
+}
+
+.libro-card-title {
+  color: var(--text-primary) !important;
+  font-weight: 600;
+  font-size: 1.12rem;
+  line-height: 1.35;
+  margin-bottom: 0.3rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.libro-card-autor {
+  color: var(--text-secondary) !important;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.libro-card-categorias {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.85rem;
+}
+
+.libro-card-cat {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+}
+
+.libro-card-precio {
+  color: var(--text-price);
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 1rem;
+}
+
+.libro-card-actions {
+  margin-top: auto;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn-like {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 10px;
+  font-size: 0.86rem;
+  font-weight: 500;
+  padding: 0.45rem 0.8rem;
 }
