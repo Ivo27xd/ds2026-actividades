@@ -1,9 +1,11 @@
-en /login
+# C23 - Deploy (Librería)
 
-email: admin@libreria.test
-password: Admin1234
+## Links de Deploy (Render + Neon)
 
-email: cliente@libreria.test
-password: Cliente1234
+- **Frontend:** https://ds2026-actividades-1-i8k3.onrender.com/
+- **Backend:** https://ds2026-actividades-3mfa.onrender.com/
 
-otra cosa -> credenciales inválidas
+## Credenciales de prueba (`/login`)
+
+- **Admin:** `admin@libreria.test` / `Admin1234`
+- **Cliente:** `cliente@libreria.test` / `Cliente1234`
